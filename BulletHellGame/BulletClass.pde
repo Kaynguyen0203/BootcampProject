@@ -25,3 +25,43 @@ class BulletClass {
     }
   }
 }
+
+class BulletClass2 {
+  float bSize;
+  float xpos;
+  float ypos;
+  float wait;
+  float vx;
+  float vy;
+  PVector unitVector;
+  float sign;
+  float sign2;
+  BulletClass2 (float x,float y) {
+    sign = int(random(0,2));
+    sign2 = int(random(0,2));
+    xpos = x;
+    ypos = y;
+    vx = random(1,10);
+    vy = random(1,10);
+    if (sign == 0) {
+      vx = -vx;
+    }
+    if (sign2 == 0) {
+      vy = -vy;
+    }
+  }
+  void draw() {
+    xpos += vx;
+    ypos += vy;
+    fill(255);
+    circle(xpos,ypos,15);
+  }
+  void shoot() {
+    for (BulletClass2 b : bullets2) {
+      b.draw();
+      if (dist(b.xpos,b.ypos,uPos.x+10,uPos.y+10) < 15) {
+        user.uHealth -=1;
+      }
+    }
+  }
+}

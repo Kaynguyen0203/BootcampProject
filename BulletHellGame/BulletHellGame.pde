@@ -2,9 +2,13 @@ User user;
 char [] keys;
 PVector uPos;
 BulletSniper BS;
+BulletSpinner BS2;
 BulletClass bullet;
+BulletClass2 bullet2;
 ArrayList<BulletClass> bullets = new ArrayList <BulletClass>();
+ArrayList<BulletClass2> bullets2 = new ArrayList <BulletClass2>();
 boolean activate = false;
+boolean activate2 = false;
 int surviveTime;
 void setup() {
   keys = new char[3];
@@ -14,6 +18,7 @@ void setup() {
   size(700, 700);
   user = new User();
   BS = new BulletSniper();
+  BS2 = new BulletSpinner();
 }
 void draw() {
   background(0);
@@ -32,8 +37,17 @@ void draw() {
         bullet.shoot();
       }
     }
+    if (frameCount > 100) {
+      BS2.draw();
+      if (activate2 == true) {
+        bullet2.shoot();
+      }
+    }
     if (frameCount % 1000 == 0) {
       bullets.clear();
+    }
+    if (frameCount % 2000 == 0) {
+      bullets2.clear();
     }
   } else {
     fill(255);
